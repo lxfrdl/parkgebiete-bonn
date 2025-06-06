@@ -34,8 +34,8 @@ function App() {
 
   // 3. Fetch both JSONs on mount
   useEffect(() => {
-    const segPath = "/parkgebiete straßenabschnitt.json";
-    const numPath = "/parkgebiete straßennummer.json";
+    const segPath = `${process.env.PUBLIC_URL}/parkgebiete-strassenabschnitt.json`;
+    const numPath = `${process.env.PUBLIC_URL}/parkgebiete-strassennummer.json`;
 
     Promise.all([fetch(segPath), fetch(numPath)])
       .then(async ([segRes, numRes]) => {
