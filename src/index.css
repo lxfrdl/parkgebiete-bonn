@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* src/index.css */
+@import url("https://unpkg.com/leaflet@1.9.3/dist/leaflet.css");
+
+/* Optional: reset margins/padding so map can fill view */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}

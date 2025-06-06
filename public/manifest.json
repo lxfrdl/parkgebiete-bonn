@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Parkgebiete Bonn",
+  "name": "Parkgebiete in Bonn anzeigen und filtern",
   "icons": [
     {
       "src": "favicon.ico",

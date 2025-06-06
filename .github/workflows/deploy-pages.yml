@@ -1,0 +1,37 @@
+name: Build & Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main   # or 'master' (whatever your default branch is)
+
+jobs:
+  build:
+    name: Install, Build, and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1) Checkout the repo
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2) Set up Node.js (choose the version your project uses)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"  # or the version you require
+
+      # 3) Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # 4) Run the build script
+      - name: Build production bundle
+        run: npm run build
+
+      # 5) Deploy to gh-pages branch
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
