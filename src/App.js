@@ -154,10 +154,10 @@ function App() {
           };
         } else {
           style = {
-            color: "#cccccc",
+            color: "#222", // dunkles Grau für inaktive Nodes
             radius: 4,
             weight: 1,
-            opacity: 0.3,
+            opacity: 0.7,
             fillOpacity: 0.2,
           };
         }
