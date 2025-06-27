@@ -31,6 +31,7 @@ function App() {
 
   // 2. Ref to the Leaflet map instance for fitting bounds
   const mapRef = useRef(null);
+  const selectedRawNameRef = useRef(selectedRawName);
 
   // 3. Fetch both JSONs on mount
   useEffect(() => {
@@ -118,7 +119,7 @@ function App() {
         };
       }
       return {
-        color: "#cccccc",
+        color: "#676767",
         weight: 1,
         opacity: 0.4,
       };
@@ -179,8 +180,22 @@ function App() {
         Bereich: ${bereich}
       </div>
     `;
-    layer.bindPopup(html);
-  }, []);
+    // Popup bei Hover statt Klick
+    layer.on('mouseover', function (e) {
+      layer.bindPopup(html).openPopup(e.latlng);
+    });
+    layer.on('mouseout', function () {
+      layer.closePopup();
+    });
+    // Klick auf Segment wählt das Parkgebiet im Select aus, nochmaliger Klick auf aktives Segment hebt die Auswahl auf
+    layer.on('click', () => {
+      if (props.parkgebiet_name === selectedRawNameRef.current) {
+        setSelectedRawName("__ALL__");
+      } else {
+        setSelectedRawName(props.parkgebiet_name);
+      }
+    });
+  }, [selectedRawNameRef]);
 
   // 8. onEachFeature for numbers (points): bind a popup showing detailed info
   const onEachNumber = useCallback((feature, layer) => {
@@ -197,8 +212,22 @@ function App() {
         Objekt: ${objekt}
       </div>
     `;
-    layer.bindPopup(html);
-  }, []);
+    // Popup bei Hover statt Klick
+    layer.on('mouseover', function (e) {
+      layer.bindPopup(html).openPopup(e.latlng);
+    });
+    layer.on('mouseout', function () {
+      layer.closePopup();
+    });
+    // Klick auf Punkt wählt das Parkgebiet im Select aus, nochmaliger Klick auf aktiven Punkt hebt die Auswahl auf
+    layer.on('click', () => {
+      if (props.parkgebiet_name === selectedRawNameRef.current) {
+        setSelectedRawName("__ALL__");
+      } else {
+        setSelectedRawName(props.parkgebiet_name);
+      }
+    });
+  }, [selectedRawNameRef]);
 
   // 9. Auto-zoom on filter change:
   //    - If "__ALL__", show overall bounds (set once on load).
@@ -244,6 +273,11 @@ function App() {
   // 10. Initial map center & zoom (fallback if bounds not yet set)
   const position = [50.73148, 7.10719];
   const zoom = 15;
+
+  // Ref für selectedRawName immer aktuell halten
+  useEffect(() => {
+    selectedRawNameRef.current = selectedRawName;
+  }, [selectedRawName]);
 
   return (
     <div style={{ height: "100vh", position: "relative" }}>
