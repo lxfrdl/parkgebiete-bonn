@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/parkgebiete-bonn/static/css/main.6f2a57da.css",
-    "main.js": "/parkgebiete-bonn/static/js/main.6bb54c45.js",
+    "main.js": "/parkgebiete-bonn/static/js/main.c952fe33.js",
     "index.html": "/parkgebiete-bonn/index.html",
     "main.6f2a57da.css.map": "/parkgebiete-bonn/static/css/main.6f2a57da.css.map",
-    "main.6bb54c45.js.map": "/parkgebiete-bonn/static/js/main.6bb54c45.js.map"
+    "main.c952fe33.js.map": "/parkgebiete-bonn/static/js/main.c952fe33.js.map"
   },
   "entrypoints": [
     "static/css/main.6f2a57da.css",
-    "static/js/main.6bb54c45.js"
+    "static/js/main.c952fe33.js"
   ]
 }
